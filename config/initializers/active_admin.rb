@@ -244,3 +244,23 @@ ActiveAdmin.setup do |config|
   # config.filters = true
 
 end
+
+
+module ActiveAdmin
+  class ResourceController
+    module DataAccess
+      # needed for current active admin master
+      def max_per_page
+        3000
+      end
+
+      def per_page
+        return 3000 if %w(text/csv application/xml application/json).include?(request.format)
+
+        return max_per_page if active_admin_config.paginate == false
+
+        @per_page || active_admin_config.per_page
+      end
+    end
+  end
+end
