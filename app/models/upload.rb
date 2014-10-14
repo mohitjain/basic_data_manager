@@ -61,7 +61,7 @@ class Upload < ActiveRecord::Base
     end
   end
 
-  #handle_asynchronously :parse_the_content
+  handle_asynchronously :parse_the_content
 
 
 end
