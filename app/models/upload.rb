@@ -2,7 +2,7 @@ class Upload < ActiveRecord::Base
   mount_uploader :file, FileUploader
 
 
-  has_many :payments, dependent: :destroy
+  has_many :payments, dependent: :delete_all
   after_create :parse_the_content
 
 
